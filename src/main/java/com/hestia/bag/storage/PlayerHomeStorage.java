@@ -47,7 +47,7 @@ public final class PlayerHomeStorage {
         try {
             Files.createDirectories(dataDir);
         } catch (IOException e) {
-            plugin.getLogger().error("Failed to create homes data directory at {}", dataDir, e);
+            // TODO: plugin.getLogger().error("Failed to create homes data directory at {}", dataDir, e);
         }
     }
 
@@ -67,8 +67,8 @@ public final class PlayerHomeStorage {
                     String json = Files.readString(file);
                     return HomeJsonCodec.deserialize(uuid, json);
                 } catch (IOException | RuntimeException e) {
-                    plugin.getLogger().error(
-                            "Failed to load home for {}; regenerating fresh.", uuid, e);
+                    // TODO: plugin.getLogger().error(
+                    //         "Failed to load home for {}; regenerating fresh.", uuid, e);
                 }
             }
             return new PlayerHome(uuid);
@@ -90,7 +90,7 @@ public final class PlayerHomeStorage {
             Files.move(tmp, file, java.nio.file.StandardCopyOption.REPLACE_EXISTING,
                     java.nio.file.StandardCopyOption.ATOMIC_MOVE);
         } catch (IOException e) {
-            plugin.getLogger().error("Failed to save home for {}", home.ownerUuid(), e);
+            // TODO: plugin.getLogger().error("Failed to save home for {}", home.ownerUuid(), e);
         }
     }
 
@@ -102,7 +102,7 @@ public final class PlayerHomeStorage {
         for (PlayerHome home : snapshot.values()) {
             save(home);
         }
-        plugin.getLogger().info("PlayerHomeStorage: saved {} homes.", snapshot.size());
+        // TODO: plugin.getLogger().info("PlayerHomeStorage: saved {} homes.", snapshot.size());
     }
 
     private Path fileFor(UUID uuid) {

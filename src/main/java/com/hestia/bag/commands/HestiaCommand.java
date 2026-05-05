@@ -56,7 +56,7 @@ public final class HestiaCommand {
          *         .build()
          * );
          */
-        plugin.getLogger().info("[TODO] Register /hestia command.");
+        // TODO: plugin.getLogger().info("[TODO] Register /hestia command.");
     }
 
     // -----------------------------------------------------------------------

@@ -70,8 +70,8 @@ public final class HestiaDimensionManager {
         //           .environment(Environment.NORMAL);
         //       plugin.getServer().createWorld(wc);
         //   }
-        plugin.getLogger().info(
-                "[TODO] Create world '{}' with VoidChunkGenerator.", HESTIA_WORLD_NAME);
+        // TODO: plugin.getLogger().info(
+        //         "[TODO] Create world '{}' with VoidChunkGenerator.", HESTIA_WORLD_NAME);
     }
 
     // -----------------------------------------------------------------------
@@ -132,8 +132,8 @@ public final class HestiaDimensionManager {
         ensurePlatform(home, slot);
         // ⚠️ TODO: actual teleport API:
         //   player.teleport(new Location(world, slot.x()+0.5, slot.y(), slot.z()+0.5));
-        plugin.getLogger().info("[TODO] Teleport {} to home of {} at {}",
-                playerUuid, homeOwnerUuid, slot);
+        // TODO: plugin.getLogger().info("[TODO] Teleport {} to home of {} at {}",
+        //         playerUuid, homeOwnerUuid, slot);
     }
 
     /**
@@ -147,12 +147,12 @@ public final class HestiaDimensionManager {
         var pos = home.lastExitPosition();
         if (pos == null) {
             // Fallback: send to the default world spawn. Better than leaving them stuck.
-            plugin.getLogger().info(
-                    "[TODO] No exit position recorded for {}; falling back to default-world spawn.",
-                    playerUuid);
+            // TODO: plugin.getLogger().info(
+            //         "[TODO] No exit position recorded for {}; falling back to default-world spawn.",
+            //         playerUuid);
             return;
         }
-        plugin.getLogger().info("[TODO] Teleport {} back to {}", playerUuid, pos);
+        // TODO: plugin.getLogger().info("[TODO] Teleport {} back to {}", playerUuid, pos);
     }
 
     // -----------------------------------------------------------------------
@@ -178,8 +178,8 @@ public final class HestiaDimensionManager {
         //                          BlockTypes.STONE_BRICKS);
         //       }
         //   }
-        plugin.getLogger().info("[TODO] Ensure {}x{} platform at {} for owner {}",
-                size, size, slot, home.ownerUuid());
+        // TODO: plugin.getLogger().info("[TODO] Ensure {}x{} platform at {} for owner {}",
+        //         size, size, slot, home.ownerUuid());
     }
 
     // -----------------------------------------------------------------------
@@ -191,8 +191,8 @@ public final class HestiaDimensionManager {
      */
     public void respawnFromVoid(UUID playerUuid) {
         DimensionSlot slot = slotFor(playerUuid);
-        plugin.getLogger().info("[TODO] Player {} fell into the void → respawning at {}",
-                playerUuid, slot);
+        // TODO: plugin.getLogger().info("[TODO] Player {} fell into the void → respawning at {}",
+        //         playerUuid, slot);
         // ⚠️ TODO: teleport to the spawn pad of the dimension they were inside.
         // NOTE: a guest visiting another player's home falls in *that* player's
         // void — they should respawn at the host's spawn pad, not their own.

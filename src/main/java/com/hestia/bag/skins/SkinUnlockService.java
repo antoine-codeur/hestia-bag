@@ -40,16 +40,16 @@ public final class SkinUnlockService {
     public boolean unlock(UUID playerUuid, String skinId) {
         Optional<BagSkin> skin = plugin.skins().get(skinId);
         if (skin.isEmpty()) {
-            plugin.getLogger().warn(
-                    "Refused to unlock unknown skin '{}' for player {}", skinId, playerUuid);
+            // TODO: plugin.getLogger().warn(
+            //         "Refused to unlock unknown skin '{}' for player {}", skinId, playerUuid);
             return false;
         }
         PlayerHome home = homeStorage.getOrCreate(playerUuid);
         boolean added = home.unlockedSkins().add(skinId);
         if (added) {
             homeStorage.save(home);
-            plugin.getLogger().info(
-                    "Player {} unlocked skin '{}'.", playerUuid, skinId);
+            // TODO: plugin.getLogger().info(
+            //         "Player {} unlocked skin '{}'.", playerUuid, skinId);
         }
         return added;
     }

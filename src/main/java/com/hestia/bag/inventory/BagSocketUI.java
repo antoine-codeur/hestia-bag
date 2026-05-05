@@ -42,7 +42,7 @@ public final class BagSocketUI {
         //   2. For each tab, render the appropriate widgets and wire the
         //      button callbacks to the relevant service methods.
         //   3. Show the window to the player.
-        plugin.getLogger().info("[TODO] Open bag socket UI for player {}.", viewer);
+        // TODO: plugin.getLogger().info("[TODO] Open bag socket UI for player {}.", viewer);
     }
 
     /**
@@ -51,7 +51,7 @@ public final class BagSocketUI {
      */
     public void showKnockNotification(UUID owner, UUID requester) {
         // ⚠️ TODO — minimal HUD popup with [Accept] [Deny] buttons.
-        plugin.getLogger().info("[TODO] Show knock popup for owner {} from {}.",
-                owner, requester);
+        // TODO: plugin.getLogger().info("[TODO] Show knock popup for owner {} from {}.",
+        //         owner, requester);
     }
 }

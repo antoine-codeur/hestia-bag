@@ -42,7 +42,7 @@ public final class HestiaAdminCommand {
          *         .build()
          * );
          */
-        plugin.getLogger().info("[TODO] Register /hestia-admin command.");
+        // TODO: plugin.getLogger().info("[TODO] Register /hestia-admin command.");
     }
 
     public void reset(/* CommandContext ctx */) {

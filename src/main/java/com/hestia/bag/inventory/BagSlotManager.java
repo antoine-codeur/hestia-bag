@@ -74,7 +74,7 @@ public final class BagSlotManager {
      * </pre>
      */
     public void refreshFor(UUID playerUuid) {
-        plugin.getLogger().debug("[TODO] Refresh bag-slot equipped flag for {}.", playerUuid);
+        // TODO: plugin.getLogger().debug("[TODO] Refresh bag-slot equipped flag for {}.", playerUuid);
     }
 
     /** Quick check used by interaction handlers. */

@@ -50,6 +50,6 @@ public final class HestiaBagRecipe {
          *           .build()
          *   );
          */
-        plugin.getLogger().info("[TODO] Register Hestia Bag crafting recipe.");
+        // TODO: plugin.getLogger().info("[TODO] Register Hestia Bag crafting recipe.");
     }
 }

@@ -81,6 +81,6 @@ public final class PlacedBagRegistry {
      */
     public void saveAll() {
         Map<UUID, PlacedBag> snapshot = new HashMap<>(byEntity);
-        plugin.getLogger().info("[TODO] Persist {} placed bags to disk.", snapshot.size());
+        // TODO: plugin.getLogger().info("[TODO] Persist {} placed bags to disk.", snapshot.size());
     }
 }

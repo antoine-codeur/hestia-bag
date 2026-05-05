@@ -115,7 +115,7 @@ public final class PermissionManager {
         // The notification system will likely be:
         //   plugin.getServer().getPlayer(owner).sendMessage(...);
         //   plugin.getServer().getPlayer(owner).showActionBar(...);
-        plugin.getLogger().info("[TODO] Notify owner {} about knock from {}.", owner, guest);
+        // TODO: plugin.getLogger().info("[TODO] Notify owner {} about knock from {}.", owner, guest);
 
         return AccessDecision.knockQueued();
     }

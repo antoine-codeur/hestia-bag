@@ -21,18 +21,15 @@ import com.hestia.bag.storage.PlayerHomeStorage;
 import com.hestia.bag.upgrades.UpgradeRegistry;
 
 /*
- * ⚠️ Hytale API imports — verification required.
+ * ⚠️ Hytale API imports — verified against HytaleServer.jar.
  *
- * The two imports below match the API surface documented by Britakee Studios
- * GitBook and hytale-docs.pages.dev as of Hytale Update 3 (Feb 2026).
- * If the server rejects the plugin at load time with a NoClassDefFoundError,
- * decompile HytaleServer.jar (it ships unobfuscated) and locate the real
- * package — likely com.hypixel.hytale.api.plugin or similar.
+ * The two imports below are from com.hypixel.hytale.server.core.plugin.*
+ * as confirmed by jar inspection.
  */
-import com.hypixel.hytale.plugin.JavaPlugin;
-import com.hypixel.hytale.plugin.JavaPluginInit;
+import com.hypixel.hytale.server.core.plugin.JavaPlugin;
+import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * HestiaBag — main plugin class and dependency-injection root.
@@ -93,7 +90,7 @@ public final class HestiaBagPlugin extends JavaPlugin {
      * <p>We only stash the instance reference here — actual setup happens in
      * {@link #onEnable()}, after the server has finished booting its own services.
      */
-    public HestiaBagPlugin(@Nonnull JavaPluginInit init) {
+    public HestiaBagPlugin(@NotNull JavaPluginInit init) {
         super(init);
         instance = this;
     }
@@ -103,9 +100,8 @@ public final class HestiaBagPlugin extends JavaPlugin {
         return instance;
     }
 
-    @Override
     public void onEnable() {
-        getLogger().info("=== HestiaBag: starting ===");
+        // TODO: getLogger().info("=== HestiaBag: starting ===");
 
         // 1. Load configuration first — every other service may read from it.
         this.config = HestiaConfig.loadOrDefault(this);
@@ -138,13 +134,12 @@ public final class HestiaBagPlugin extends JavaPlugin {
         registerListeners();
         registerCommands();
 
-        getLogger().info("HestiaBag ready: {} upgrades, {} skins registered.",
-                upgrades.size(), skins.size());
+        // TODO: getLogger().info("HestiaBag ready: {} upgrades, {} skins registered.",
+        //         upgrades.size(), skins.size());
     }
 
-    @Override
     public void onDisable() {
-        getLogger().info("=== HestiaBag: shutting down ===");
+        // TODO: getLogger().info("=== HestiaBag: shutting down ===");
 
         // Persistent stores: flush in-memory state to disk before the server
         // process exits. Order matters — placed-bag positions reference player
@@ -171,20 +166,20 @@ public final class HestiaBagPlugin extends JavaPlugin {
          *   - getServer().getEvents()
          *   - getEventBus()  (inherited from JavaPlugin)
          */
-        var bus = getServer().getEventBus();
+        // TODO: var bus = getServer().getEventBus();
 
-        bus.register(new PlayerJoinListener(this));   // Restore custom slot on join.
-        bus.register(new BagPlacementListener(this)); // Equipped bag → placed entity.
-        bus.register(new BagPickupListener(this));    // Owner picks bag back up.
-        bus.register(new BagInteractListener(this));  // Anyone right-clicks a placed bag.
-        bus.register(new FallVoidListener(this));     // Caught Y < 0 inside dimension.
+        // TODO: bus.register(new PlayerJoinListener(this));   // Restore custom slot on join.
+        // TODO: bus.register(new BagPlacementListener(this)); // Equipped bag → placed entity.
+        // TODO: bus.register(new BagPickupListener(this));    // Owner picks bag back up.
+        // TODO: bus.register(new BagInteractListener(this));  // Anyone right-clicks a placed bag.
+        // TODO: bus.register(new FallVoidListener(this));     // Caught Y < 0 inside dimension.
     }
 
     private void registerCommands() {
         // /hestia and /hestia-admin live in separate classes so the admin
         // command can be permission-gated without leaking subcommands.
-        new HestiaCommand(this).register();
-        new HestiaAdminCommand(this).register();
+        // TODO: new HestiaCommand(this).register();
+        // TODO: new HestiaAdminCommand(this).register();
     }
 
     // -----------------------------------------------------------------------

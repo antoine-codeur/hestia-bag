@@ -64,7 +64,7 @@ public final class HestiaConfig {
      * bundled JSON library. Until then we always return defaults.
      */
     public static HestiaConfig loadOrDefault(HestiaBagPlugin plugin) {
-        plugin.getLogger().info("HestiaConfig: using built-in defaults (file parsing TODO).");
+        // TODO: plugin.getLogger().info("HestiaConfig: using built-in defaults (file parsing TODO)");
         return defaults();
     }
 

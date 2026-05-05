@@ -69,7 +69,7 @@ public final class HestiaItems {
         //       .model("hestia:item/bag.bbmodel")
         //       .tooltipLine("Place to access your private home.")
         //       .build());
-        plugin.getLogger().info("[TODO] Register item {}.", HESTIA_BAG_ID);
+        // TODO: plugin.getLogger().info("[TODO] Register item {}.", HESTIA_BAG_ID);
     }
 
     private static void registerSocket(HestiaBagPlugin plugin) {
@@ -79,12 +79,12 @@ public final class HestiaItems {
         //       .hardness(5.0f)
         //       .interactionHandler(...)
         //       .build());
-        plugin.getLogger().info("[TODO] Register block {}.", HESTIA_SOCKET_ID);
+        // TODO: plugin.getLogger().info("[TODO] Register block {}.", HESTIA_SOCKET_ID);
     }
 
     private static void registerSoulstone(HestiaBagPlugin plugin) {
         // ⚠️ TODO: rare reagent for the bag recipe.
-        plugin.getLogger().info("[TODO] Register item {}.", SOULSTONE_ID);
+        // TODO: plugin.getLogger().info("[TODO] Register item {}.", SOULSTONE_ID);
     }
 
     private static void registerUpgradeItems(HestiaBagPlugin plugin) {
@@ -94,7 +94,7 @@ public final class HestiaItems {
         plugin.upgrades().all().forEach(upgrade -> {
             String itemId = upgradeItemId(upgrade.id());
             // ⚠️ TODO: ItemRegistry.register(Item.builder(itemId)... .build());
-            plugin.getLogger().debug("[TODO] Register upgrade item {}.", itemId);
+            // TODO: plugin.getLogger().debug("[TODO] Register upgrade item {}.", itemId);
         });
     }
 
@@ -105,7 +105,7 @@ public final class HestiaItems {
                 .forEach(skin -> {
                     String itemId = skinTokenItemId(skin.id());
                     // ⚠️ TODO: ItemRegistry.register(...)
-                    plugin.getLogger().debug("[TODO] Register skin token {}.", itemId);
+                    // TODO: plugin.getLogger().debug("[TODO] Register skin token {}.", itemId);
                 });
     }
 }
