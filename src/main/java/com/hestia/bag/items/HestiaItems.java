@@ -62,14 +62,18 @@ public final class HestiaItems {
     // -----------------------------------------------------------------------
 
     private static void registerBag(HestiaBagPlugin plugin) {
-        // ⚠️ TODO:
+        // TODO: Implement proper ItemRegistry API call once Hytale registry is documented.
+        // Expected pattern (pseudo-code):
         //   ItemRegistry.register(Item.builder(HESTIA_BAG_ID)
         //       .displayName("Hestia Bag")
         //       .stackSize(1)                       // bags don't stack — each is owner-tagged
         //       .model("hestia:item/bag.bbmodel")
         //       .tooltipLine("Place to access your private home.")
         //       .build());
-        // TODO: plugin.getLogger().info("[TODO] Register item {}.", HESTIA_BAG_ID);
+        //
+        // For now: this is a placeholder. The bag will not appear in-game until
+        // the real Hytale ItemRegistry API is integrated.
+        System.out.println("[HestiaBag] Attempted to register " + HESTIA_BAG_ID + " (awaiting ItemRegistry API)");
     }
 
     private static void registerSocket(HestiaBagPlugin plugin) {

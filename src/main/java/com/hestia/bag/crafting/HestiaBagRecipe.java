@@ -26,30 +26,25 @@ public final class HestiaBagRecipe {
     private HestiaBagRecipe() {}
 
     public static void register(HestiaBagPlugin plugin) {
-        /*
-         * ⚠️ TODO — replace with the real Hytale recipe API.
-         *
-         * Pseudo-code:
-         *   RecipeRegistry.register(
-         *       Recipe.builder(HestiaItems.HESTIA_BAG_ID)
-         *           .station("hestia:workbench")          // or vanilla workbench
-         *           .shape(
-         *               "LWL",
-         *               "WSW",                            // S = soulstone (loot drop), W = wool, L = leather
-         *               "LWL"
-         *           )
-         *           .ingredient('L', "vanilla:leather")
-         *           .ingredient('W', "vanilla:wool")
-         *           .ingredient('S', "hestia:soulstone")
-         *           .resultModifier((player, stack) -> {
-         *               // Tag the crafted bag with the player's UUID so we know
-         *               // which dimension to portal to when they equip + interact.
-         *               stack.setNbt("owner", player.getUniqueId().toString());
-         *               return stack;
-         *           })
-         *           .build()
-         *   );
-         */
-        // TODO: plugin.getLogger().info("[TODO] Register Hestia Bag crafting recipe.");
+        // ⚠️ TODO — RecipeRegistry API not yet available in Hytale
+        // Expected implementation:
+        //   RecipeRegistry.register(
+        //       Recipe.builder(HestiaItems.HESTIA_BAG_ID)
+        //           .station("vanilla:workbench")
+        //           .shape(
+        //               "LWL",
+        //               "WSW",
+        //               "LWL"
+        //           )
+        //           .ingredient('L', "vanilla:leather")
+        //           .ingredient('W', "vanilla:wool")
+        //           .ingredient('S', "hestia:soulstone")
+        //           .resultModifier((player, stack) -> {
+        //               stack.setNbt("owner", player.getUniqueId().toString());
+        //               return stack;
+        //           })
+        //           .build()
+        //   );
+        System.out.println("[HestiaBag] registerRecipe(): awaiting Hytale RecipeRegistry API");
     }
 }

@@ -74,7 +74,8 @@ public final class BagSlotManager {
      * </pre>
      */
     public void refreshFor(UUID playerUuid) {
-        // TODO: plugin.getLogger().debug("[TODO] Refresh bag-slot equipped flag for {}.", playerUuid);
+        // ⚠️ TODO — implement with the real inventory iteration API
+        System.out.println("[HestiaBag] refreshFor(" + playerUuid + "): awaiting Hytale inventory API");
     }
 
     /** Quick check used by interaction handlers. */

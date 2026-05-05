@@ -88,7 +88,7 @@ To fix:
 5. Re-run `./gradlew shadowJar`
 
 The build should now succeed and produce
-`build/libs/HestiaBag-0.1.0.jar`.
+`build/libs/HestiaBag-0.1.1.jar`.
 
 ---
 
@@ -121,7 +121,7 @@ Hytale plugins are loaded from:
 - **Linux (dedicated server)**:
   `/opt/hytale/Server/mods/`
 
-Copy `build/libs/HestiaBag-0.1.0.jar` into that directory and start (or
+Copy `build/libs/HestiaBag-0.1.1.jar` into that directory and start (or
 restart) the server. Watch the server log — you should see:
 
 ```
@@ -156,7 +156,7 @@ checkout — the bare minimum quality bar before sharing.
 
 ### Tagging a release
 ```bash
-git tag v0.1.0
+git tag v0.1.1
 git push --tags
 ```
 

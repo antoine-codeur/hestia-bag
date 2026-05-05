@@ -150,7 +150,7 @@ src/main/java/com/hestia/bag/
 
 ## 🚧 Project status
 
-**Version 0.1.0 — structural skeleton.**
+**Version 0.1.1 — structural skeleton.**
 
 The architecture, data model, and permission flow are fully in place. What's
 NOT yet wired:

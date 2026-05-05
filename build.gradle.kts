@@ -85,7 +85,7 @@ dependencies {
 
 tasks {
     jar {
-        // We want HestiaBag-0.1.0.jar, not HestiaBag-0.1.0-all.jar.
+        // We want HestiaBag-0.1.1.jar, not HestiaBag-0.1.1-all.jar.
         archiveClassifier.set("")
     }
 

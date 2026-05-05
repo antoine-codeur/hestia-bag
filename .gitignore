@@ -46,3 +46,4 @@ permissions.json
 .env
 .env.local
 curseforge.token
+Makefile

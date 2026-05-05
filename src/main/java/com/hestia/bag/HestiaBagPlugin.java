@@ -100,18 +100,40 @@ public final class HestiaBagPlugin extends JavaPlugin {
         return instance;
     }
 
+    /**
+     * Called during server startup to register event listeners.
+     * This happens before onEnable(), so services may not be fully initialized yet.
+     *
+     * <p>⚠️ TODO — wire up actual Hytale events once event classes are available.
+     * Expected pattern (pseudo-code):
+     * <pre>
+     *   this.getEventRegistry().registerGlobal(
+     *       PlayerReadyEvent.class,
+     *       (event) -> bagSlots.refreshFor(event.getPlayer().getUniqueId())
+     *   );
+     * </pre>
+     */
+    @Override
+    public void setup() {
+        System.out.println("[HestiaBag] setup() called - registering event listeners");
+        // TODO: registerGlobal(PlayerReadyEvent.class, ...) once event imports available
+    }
+
     public void onEnable() {
-        // TODO: getLogger().info("=== HestiaBag: starting ===");
+        System.out.println("=== HestiaBag: initializing plugin ===");
 
         // 1. Load configuration first — every other service may read from it.
         this.config = HestiaConfig.loadOrDefault(this);
+        System.out.println("[HestiaBag] Config loaded");
 
         // 2. Pure in-memory registries (no I/O). Order: catalogs before consumers.
         this.upgrades = new UpgradeRegistry();
         this.upgrades.registerDefaults();
+        System.out.println("[HestiaBag] Registered " + this.upgrades.size() + " upgrades");
 
         this.skins = new SkinRegistry();
         this.skins.registerDefaults();
+        System.out.println("[HestiaBag] Registered " + this.skins.size() + " skins");
 
         // 3. Persistent stores. Each has its own JSON-per-file directory; loading
         //    is lazy on first access to keep startup snappy on busy servers.
@@ -119,27 +141,30 @@ public final class HestiaBagPlugin extends JavaPlugin {
         this.placedBags  = new PlacedBagRegistry(this);
         this.permissions = new PermissionManager(this, homeStorage);
         this.skinUnlocks = new SkinUnlockService(this, homeStorage);
+        System.out.println("[HestiaBag] Storage services initialized");
 
         // 4. Domain services that compose the registries above.
         this.dimensions   = new HestiaDimensionManager(this);
         this.resetService = new DimensionResetService(this);
         this.bagSlots     = new BagSlotManager(this);
+        System.out.println("[HestiaBag] Domain services initialized");
 
         // 5. Game-content registration (items, blocks, recipes).
         HestiaItems.registerAll(this);
         HestiaBagRecipe.register(this);
+        System.out.println("[HestiaBag] Item and recipe registration attempted");
 
         // 6. Wire up event listeners and commands. These hook the plugin into
         //    actual gameplay — once they're registered, the plugin is "live".
         registerListeners();
         registerCommands();
+        System.out.println("[HestiaBag] Listeners and commands registered");
 
-        // TODO: getLogger().info("HestiaBag ready: {} upgrades, {} skins registered.",
-        //         upgrades.size(), skins.size());
+        System.out.println("=== HestiaBag: ready! (" + upgrades.size() + " upgrades, " + skins.size() + " skins) ===");
     }
 
     public void onDisable() {
-        // TODO: getLogger().info("=== HestiaBag: shutting down ===");
+        System.out.println("=== HestiaBag: shutting down ===");
 
         // Persistent stores: flush in-memory state to disk before the server
         // process exits. Order matters — placed-bag positions reference player
