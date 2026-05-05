@@ -1,0 +1,17 @@
+{
+  "Group": "com.hestia",
+  "Name": "HestiaBag",
+  "Version": "0.1.0",
+  "Description": "A pocket-dimension housing system inspired by Dofus' Havre-Sac. Craft a bag, place it in the world, and turn it into a private home shared with friends through fine-grained permissions.",
+  "Main": "com.hestia.bag.HestiaBagPlugin",
+  "Authors": [
+    {
+      "Name": "TODO_YOUR_NAME",
+      "Url": "https://github.com/TODO_YOUR_USERNAME"
+    }
+  ],
+  "Website": "https://github.com/TODO_YOUR_USERNAME/hestia-bag",
+  "ServerVersion": "*",
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false
+}

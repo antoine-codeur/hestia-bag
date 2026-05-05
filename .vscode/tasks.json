@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Gradle: build",
+      "type": "shell",
+      "command": "./gradlew shadowJar",
+      "windows": { "command": ".\\gradlew.bat shadowJar" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Gradle: clean",
+      "type": "shell",
+      "command": "./gradlew clean",
+      "windows": { "command": ".\\gradlew.bat clean" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Gradle: run server (Hytale)",
+      "type": "shell",
+      "command": "./gradlew runServer",
+      "windows": { "command": ".\\gradlew.bat runServer" },
+      "problemMatcher": []
+    }
+  ]
+}
