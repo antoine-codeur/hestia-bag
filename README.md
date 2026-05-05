@@ -202,7 +202,9 @@ See [SETUP.md](SETUP.md) for the detailed step-by-step.
 
 ## 📝 License
 
-[MIT](LICENSE) — fork, modify, redistribute freely.
+[GNU General Public License v3.0](LICENSE) — This software is **copyleft**. 
+Any software that uses, modifies, or derives from HestiaBag must also be 
+released under GPLv3 or later, with full source code publicly available.
 
 ## 🙏 Credits
 
