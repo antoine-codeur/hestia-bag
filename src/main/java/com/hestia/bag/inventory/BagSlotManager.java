@@ -59,23 +59,35 @@ public final class BagSlotManager {
      * Called on join, on inventory close, and after any inventory mutation
      * we care about.
      *
-     * <p>⚠️ TODO — implement with the real inventory iteration API:
+     * <p>⚠️ IMPLEMENTATION STATUS: Awaiting full Hytale inventory iteration API.
+     *
+     * Expected implementation once Player API is available:
      * <pre>
+     *   Player player = plugin.getServer().getPlayer(playerUuid);
+     *   if (player == null) return; // player offline
+     *
      *   for (ItemStack stack : player.getInventory().contents()) {
      *       if (stack != null
-     *               &amp;&amp; stack.getItemId().equals(HestiaItems.HESTIA_BAG_ID)
-     *               &amp;&amp; stack.getNbtString(HestiaItems.OWNER_NBT_KEY)
-     *                          .equals(player.getUniqueId().toString())) {
-     *           equippedFlag.put(player.getUniqueId(), true);
+     *               &amp;&amp; HestiaItems.HESTIA_BAG_ID.equals(stack.getItemId())
+     *               &amp;&amp; playerUuid.toString().equals(stack.getNbtString(HestiaItems.OWNER_NBT_KEY))) {
+     *           equippedFlag.put(playerUuid, true);
+     *           System.out.println("[HestiaBag] " + playerUuid + " equipped bag");
      *           return;
      *       }
      *   }
-     *   equippedFlag.remove(player.getUniqueId());
+     *   equippedFlag.remove(playerUuid);
+     *   System.out.println("[HestiaBag] " + playerUuid + " no bag equipped");
      * </pre>
+     *
+     * For now: placeholder implementation. Equipment state is not tracked
+     * until the inventory API is available.
      */
-    public void refreshFor(UUID playerUuid) {
-        // ⚠️ TODO — implement with the real inventory iteration API
-        System.out.println("[HestiaBag] refreshFor(" + playerUuid + "): awaiting Hytale inventory API");
+    public void refreshFor(Object playerOrUuid) {
+        System.out.println("[HestiaBag] refreshFor(" + playerOrUuid + ") — awaiting inventory iteration API");
+        // Temporary: assume no bag equipped until inventory API available
+        if (playerOrUuid instanceof UUID) {
+            equippedFlag.remove(playerOrUuid);
+        }
     }
 
     /** Quick check used by interaction handlers. */
@@ -87,10 +99,31 @@ public final class BagSlotManager {
      * Hook called when the player picks up or crafts a bag. If they already
      * have one equipped (or placed), we silently void the new one — design
      * spec says "one player, one dimension" extends to "one bag in flight".
+     *
+     * <p>⚠️ IMPLEMENTATION STATUS: Awaiting inventory mutation and placed-bag APIs.
+     *
+     * Expected implementation:
+     * <pre>
+     *   // Check if player already has a bag equipped or placed
+     *   if (hasBagEquipped(playerUuid) || plugin.placedBags().hasPlaced(playerUuid)) {
+     *       // Remove the duplicate stack
+     *       Player player = plugin.getServer().getPlayer(playerUuid);
+     *       if (player != null) {
+     *           // Iterate inventory, find the new bag, and remove it
+     *           for (ItemStack stack : player.getInventory().contents()) {
+     *               if (stack != null &amp;&amp; HestiaItems.HESTIA_BAG_ID.equals(stack.getItemId())) {
+     *                   stack.setAmount(0);
+     *                   player.sendMessage("You already have a bag equipped or placed!");
+     *                   return;
+     *               }
+     *           }
+     *       }
+     *   }
+     *   refreshFor(playerUuid);
+     * </pre>
      */
     public void onBagAcquired(UUID playerUuid) {
-        // ⚠️ TODO — implement deduplication: if hasBagEquipped() OR placed bag exists,
-        // remove the just-acquired stack and notify the player.
+        System.out.println("[HestiaBag] onBagAcquired(" + playerUuid + ") — awaiting inventory/dedup API");
         refreshFor(playerUuid);
     }
 }

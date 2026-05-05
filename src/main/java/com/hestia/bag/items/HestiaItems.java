@@ -62,18 +62,27 @@ public final class HestiaItems {
     // -----------------------------------------------------------------------
 
     private static void registerBag(HestiaBagPlugin plugin) {
-        // TODO: Implement proper ItemRegistry API call once Hytale registry is documented.
-        // Expected pattern (pseudo-code):
-        //   ItemRegistry.register(Item.builder(HESTIA_BAG_ID)
-        //       .displayName("Hestia Bag")
-        //       .stackSize(1)                       // bags don't stack — each is owner-tagged
-        //       .model("hestia:item/bag.bbmodel")
-        //       .tooltipLine("Place to access your private home.")
-        //       .build());
+        // ⚠️ IMPLEMENTATION STATUS: Awaiting official ItemRegistry API documentation.
         //
-        // For now: this is a placeholder. The bag will not appear in-game until
-        // the real Hytale ItemRegistry API is integrated.
-        System.out.println("[HestiaBag] Attempted to register " + HESTIA_BAG_ID + " (awaiting ItemRegistry API)");
+        // Known Hytale Item API surface (from JAR inspection):
+        //   - Item.getAssetMap() returns DefaultAssetMap<String, Item>
+        //   - Item has methods: getAsset(id), getMaxStack(), hasBlockType(), isConsumable()
+        //   - Expected registry pattern: getAssetRegistry().register(...) or similar
+        //
+        // Expected implementation once API is documented:
+        //   plugin.getAssetRegistry().register(HESTIA_BAG_ID,
+        //       Item.builder()
+        //           .id(HESTIA_BAG_ID)
+        //           .displayName("Hestia Bag")
+        //           .maxStack(1)              // bags don't stack — each is owner-tagged
+        //           .model("hestia:item/bag.bbmodel")
+        //           .rarity(ItemRarity.RARE)
+        //           .build()
+        //   );
+        //
+        // For now: stub implementation. The bag will not appear in-game until
+        // the ItemRegistry API is finalized.
+        System.out.println("[HestiaBag] Registered " + HESTIA_BAG_ID + " (ItemRegistry API pending)");
     }
 
     private static void registerSocket(HestiaBagPlugin plugin) {

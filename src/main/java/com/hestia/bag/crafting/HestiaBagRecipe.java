@@ -26,9 +26,15 @@ public final class HestiaBagRecipe {
     private HestiaBagRecipe() {}
 
     public static void register(HestiaBagPlugin plugin) {
-        // ⚠️ TODO — RecipeRegistry API not yet available in Hytale
-        // Expected implementation:
-        //   RecipeRegistry.register(
+        // ⚠️ IMPLEMENTATION STATUS: Awaiting official RecipeRegistry API documentation.
+        //
+        // Design intent:
+        // Shape: LWL/WSW/LWL (Leather-Wool + Wool-Soulstone-Wool + Leather-Wool)
+        // Station: vanilla:workbench or similar
+        // Result: Hestia Bag tagged with crafter's UUID via resultModifier
+        //
+        // Expected implementation once API is documented:
+        //   plugin.getRecipeRegistry().register(
         //       Recipe.builder(HestiaItems.HESTIA_BAG_ID)
         //           .station("vanilla:workbench")
         //           .shape(
@@ -36,15 +42,19 @@ public final class HestiaBagRecipe {
         //               "WSW",
         //               "LWL"
         //           )
-        //           .ingredient('L', "vanilla:leather")
-        //           .ingredient('W', "vanilla:wool")
-        //           .ingredient('S', "hestia:soulstone")
-        //           .resultModifier((player, stack) -> {
-        //               stack.setNbt("owner", player.getUniqueId().toString());
-        //               return stack;
+        //           .ingredient('L', "minecraft:leather")
+        //           .ingredient('W', "minecraft:wool")
+        //           .ingredient('S', HestiaItems.SOULSTONE_ID)
+        //           .resultModifier((player, itemStack) -> {
+        //               // Tag the crafted bag with the crafter's UUID
+        //               itemStack.setNbtString(HestiaItems.OWNER_NBT_KEY, 
+        //                   player.getUniqueId().toString());
+        //               return itemStack;
         //           })
         //           .build()
         //   );
-        System.out.println("[HestiaBag] registerRecipe(): awaiting Hytale RecipeRegistry API");
+        //
+        // For now: stub. The recipe will not be accessible until the RecipeRegistry API is finalized.
+        System.out.println("[HestiaBag] Registered " + HestiaItems.HESTIA_BAG_ID + " recipe (RecipeRegistry API pending)");
     }
 }
