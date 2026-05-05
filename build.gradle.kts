@@ -50,9 +50,33 @@ dependencies {
      * The server already provides the API jar at runtime, and bundling our own copy
      * would shadow the runtime classes and trigger LinkageError at load time.
      *
-     * Uses the local Hytale installation.
+     * Search order:
+     *   1. Local Hytale installation (Windows dev machine)
+     *   2. Fallback path (CI/Linux environment, expects HytaleServer.jar in project root)
+     *   3. HYTALE_SERVER_JAR environment variable (if set)
      */
-    compileOnly(files("C:/Users/Antoi/AppData/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar"))
+    val windowsPath = file("C:/Users/Antoi/AppData/Roaming/Hytale/install/release/package/game/latest/Server/HytaleServer.jar")
+    val fallbackPath = file("HytaleServer.jar")
+    val envPath = System.getenv("HYTALE_SERVER_JAR")?.let { file(it) }
+
+    val hytaleServerJar = when {
+        windowsPath.exists() -> windowsPath
+        fallbackPath.exists() -> fallbackPath
+        envPath?.exists() == true -> envPath
+        else -> {
+            println("ERROR: HytaleServer.jar not found!")
+            println("Searched locations:")
+            println("  1. ${windowsPath.absolutePath}")
+            println("  2. ${fallbackPath.absolutePath}")
+            if (envPath != null) println("  3. $envPath (via HYTALE_SERVER_JAR env var)")
+            println("\nTo fix:")
+            println("  - Local build: Install Hytale to the Windows path above")
+            println("  - CI build: Add HytaleServer.jar to project root or set HYTALE_SERVER_JAR")
+            error("HytaleServer.jar is required to compile HestiaBag")
+        }
+    }
+
+    compileOnly(files(hytaleServerJar))
 
     // JetBrains nullability annotations. Compile-only is enough — they're not
     // present at runtime, the JVM doesn't enforce them.

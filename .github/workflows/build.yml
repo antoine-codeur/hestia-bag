@@ -32,6 +32,40 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
 
+      - name: Create HytaleServer.jar stub for CI compilation
+        run: |
+          # In CI (Linux), we can't access the Windows Hytale installation.
+          # Create a minimal JAR with stub classes for compilation only.
+          # This is placed in the project root where build.gradle.kts expects it.
+          
+          # Create temp directory for stub source
+          mkdir -p stub-src/com/hypixel/hytale/server/core/plugin
+          
+          # Create stub interfaces/classes with required signatures
+          cat > stub-src/com/hypixel/hytale/server/core/plugin/JavaPlugin.java << 'EOF'
+          package com.hypixel.hytale.server.core.plugin;
+          public abstract class JavaPlugin {
+              public void onEnable() {}
+              public void onDisable() {}
+          }
+          EOF
+          
+          cat > stub-src/com/hypixel/hytale/server/core/plugin/JavaPluginInit.java << 'EOF'
+          package com.hypixel.hytale.server.core.plugin;
+          public interface JavaPluginInit {}
+          EOF
+          
+          # Compile stubs
+          mkdir -p stub-bin
+          javac -d stub-bin stub-src/com/hypixel/hytale/server/core/plugin/*.java
+          
+          # Create the stub JAR (no manifest needed for compilation)
+          cd stub-bin && jar cf ../HytaleServer.jar . && cd -
+          
+          # Verify it was created
+          ls -lh HytaleServer.jar
+          echo "✓ HytaleServer.jar stub created in project root"
+
       - name: Build with Gradle
         run: ./gradlew clean build --no-daemon --stacktrace
 
@@ -60,10 +94,22 @@ jobs:
           distribution: temurin
           java-version: '25'
 
+      - name: Download HytaleServer.jar (Local Build Artifact)
+        run: |
+          # GitHub Actions CI cannot access local Hytale installation.
+          # This step is a placeholder: in production, HytaleServer.jar must be:
+          # - Downloaded from Hytale's Maven repository (requires credentials), OR
+          # - Committed to the repo (not recommended for large binaries), OR  
+          # - Cached in GitHub Actions secrets
+          #
+          # For now, we assume the artifact from the 'build' job succeeded,
+          # meaning HytaleServer.jar was available during that build.
+          echo "Note: HytaleServer.jar must be available for full builds."
+
       - name: Build
         run: |
           chmod +x gradlew
-          ./gradlew shadowJar --no-daemon
+          ./gradlew clean build --no-daemon
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
