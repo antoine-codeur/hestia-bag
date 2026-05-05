@@ -31,7 +31,7 @@ at plugin load time with `Unsupported class file major version`.
 ## 2. Clone and open
 
 ```bash
-git clone https://github.com/TODO_YOUR_USERNAME/hestia-bag.git
+git clone https://github.com/antoine-codeur/hestia-bag.git
 cd hestia-bag
 code .
 ```
@@ -146,7 +146,7 @@ it. The Britakee template has a working example you can lift directly.
 ```bash
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/TODO_YOUR_USERNAME/hestia-bag.git
+git remote add origin https://github.com/antoine-codeur/hestia-bag.git
 git push -u origin main
 ```
 
@@ -173,7 +173,7 @@ Release with the JAR attached.
 5. The next tagged release will auto-upload
 
 Before publishing publicly:
-- Replace every `TODO_YOUR_NAME` and `TODO_YOUR_USERNAME` in the repo
+- Replace every `Antoine Dénoue` and `antoine-codeur` in the repo
 - Replace `"ServerVersion": "*"` in `manifest.json` with the actual Hytale
   version you tested against (Update 3 introduced strict version equality —
   `"*"` may not be valid)

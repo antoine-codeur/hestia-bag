@@ -6,11 +6,11 @@
   "Main": "com.hestia.bag.HestiaBagPlugin",
   "Authors": [
     {
-      "Name": "TODO_YOUR_NAME",
-      "Url": "https://github.com/TODO_YOUR_USERNAME"
+      "Name": "Antoine Dénoue",
+      "Url": "https://github.com/antoine-codeur"
     }
   ],
-  "Website": "https://github.com/TODO_YOUR_USERNAME/hestia-bag",
+  "Website": "https://github.com/antoine-codeur/hestia-bag",
   "ServerVersion": "*",
   "DisabledByDefault": false,
   "IncludesAssetPack": false

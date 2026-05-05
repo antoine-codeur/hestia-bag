@@ -83,7 +83,7 @@ achievements.
 
 ### Steps
 ```bash
-git clone https://github.com/TODO_YOUR_USERNAME/hestia-bag.git
+git clone https://github.com/antoine-codeur/hestia-bag.git
 cd hestia-bag
 ./gradlew shadowJar
 ```
