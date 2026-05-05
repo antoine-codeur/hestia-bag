@@ -41,18 +41,19 @@ jobs:
           # Create temp directory for stub source
           mkdir -p stub-src/com/hypixel/hytale/server/core/plugin
           
-          # Create stub interfaces/classes with required signatures
-          cat > stub-src/com/hypixel/hytale/server/core/plugin/JavaPlugin.java << 'EOF'
-          package com.hypixel.hytale.server.core.plugin;
-          public abstract class JavaPlugin {
-              public void onEnable() {}
-              public void onDisable() {}
-          }
-          EOF
-          
+          # Create stub base class with proper constructor signature
           cat > stub-src/com/hypixel/hytale/server/core/plugin/JavaPluginInit.java << 'EOF'
           package com.hypixel.hytale.server.core.plugin;
           public interface JavaPluginInit {}
+          EOF
+          
+          cat > stub-src/com/hypixel/hytale/server/core/plugin/JavaPlugin.java << 'EOF'
+          package com.hypixel.hytale.server.core.plugin;
+          public abstract class JavaPlugin {
+              public JavaPlugin(JavaPluginInit init) {}
+              public void onEnable() {}
+              public void onDisable() {}
+          }
           EOF
           
           # Compile stubs
